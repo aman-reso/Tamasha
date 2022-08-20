@@ -15,6 +15,7 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.io.File
+import java.lang.reflect.Modifier
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
@@ -26,7 +27,11 @@ class ApiModule {
     @Provides
     @Singleton
     fun provideGson(): Gson {
-        val gsonBuilder = GsonBuilder().setLenient()
+        val gsonBuilder = GsonBuilder().setLenient().excludeFieldsWithModifiers(
+            Modifier.STATIC,
+            Modifier.TRANSIENT,
+            Modifier.VOLATILE
+        )
         return gsonBuilder.create()
     }
 

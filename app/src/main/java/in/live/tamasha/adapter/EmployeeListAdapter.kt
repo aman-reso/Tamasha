@@ -31,5 +31,14 @@ class EmployeeListAdapter : RecyclerView.Adapter<EmployeeViewHolder>() {
     override fun onBindViewHolder(holder: EmployeeViewHolder, position: Int) {
         val value = asyncListDiffer.currentList[position]
         holder.bindData(value)
+        holder.itemView.setOnClickListener {
+            System.out.println("value-->${value.isExpanded}")
+            if (value.isExpanded == false) {
+                value.isExpanded = true
+            } else if (value.isExpanded == true) {
+                value.isExpanded = false
+            }
+            notifyItemChanged(position)
+        }
     }
 }

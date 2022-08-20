@@ -1,11 +1,14 @@
 package `in`.live.tamasha.viewholder
 
 import `in`.live.tamasha.R
+import `in`.live.tamasha.makeViewGone
+import `in`.live.tamasha.makeViewVisible
 import `in`.live.tamasha.models.EmployeeModel
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.squareup.picasso.Callback
 import com.squareup.picasso.Picasso
 
 class EmployeeViewHolder(view: View) : RecyclerView.ViewHolder(view) {
@@ -26,6 +29,11 @@ class EmployeeViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val imageUrl = value.profileImage
         if (!imageUrl.isNullOrEmpty()) {
             Picasso.get().load(imageUrl).into(imageView)
+        }
+        if (value.isExpanded) {
+            empSalaryTextView.makeViewVisible()
+        }else{
+            empSalaryTextView.makeViewGone()
         }
 
     }
