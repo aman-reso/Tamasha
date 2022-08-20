@@ -71,7 +71,6 @@ class MainActivity : AppCompatActivity() {
                 if (!errorMessage.isNullOrEmpty()) {
                     Toast.makeText(this, errorMessage, Toast.LENGTH_LONG).show()
                 }
-                //go for local data source
             }
             else -> {
                 Toast.makeText(this, "Something went wrong", Toast.LENGTH_LONG).show()
